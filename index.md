@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## Molecular Anthropology Group Training Module
 
 You can use the [editor on GitHub](https://github.com/molecanth/molecanth.github.io/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
 
