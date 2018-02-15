@@ -1,4 +1,5 @@
-## Molecular Anthropology Group Training Module
+## UO Molecular Anthropology Group 
+## Genomics Training Module
 
 Begin with [DGE Overview](https://github.com/molecanth/molecanth.github.io/blob/master/DGE_overview.md)
 
