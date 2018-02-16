@@ -1,5 +1,40 @@
 ## UO Molecular Anthropology Group Genomics Training Module
 
+This module is an end-to-end differential expression analysis (DGE) workflow which can be applied to a variety of biological questions using RNA-seq data. The module requires a working knowledge of R and will utilize the R integrated environment RStudio. 
+
+### Installation Requirements
+
+Download the most recent versions of R and RStudio for your laptop:
+
+ - [R](http://lib.stat.cmu.edu/R/CRAN/) 
+ - [RStudio](https://www.rstudio.com/products/rstudio/download/#download)
+ 
+Install the required R packages by running the following code in RStudio:
+
+```r
+source("http://bioconductor.org/biocLite.R") 
+biocLite(c("RColorBrewer", "pheatmap", "gProfileR", "DESeq2", "clusterProfiler", 
+           "DOSE", "org.Hs.eg.db", "pathview", "treemap", "purrr", "SPIA", "DEGreport"))
+```
+
+Load the libraries to make sure the packages installed properly:
+
+```r
+library(DESeq2)
+library(ggplot2)
+library(RColorBrewer)
+library(pheatmap)
+library(clusterProfiler)
+library(DEGreport)
+library(org.Hs.eg.db)
+library(DOSE)
+library(pathview)
+library(SPIA)
+library(purrr)
+library(gProfileR)
+library(treemap)
+```
+
 Begin with [DGE Overview](https://github.com/molecanth/molecanth.github.io/blob/master/DGE_overview.md)
 
 You can use the [editor on GitHub](https://github.com/molecanth/molecanth.github.io/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
