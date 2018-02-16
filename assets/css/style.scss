@@ -3,6 +3,7 @@
 
 @import "{{ site.theme }}";
 
-.page-header {background-image: url("../images/oregonbanner.jpg");}
+header:
+  image: url("../images/oregonbanner.jpg")
 
-.main-content h1 { margin-top: 4rem; margin-bottom: 4rem; font-weight: normal; color: #000000; }
+
