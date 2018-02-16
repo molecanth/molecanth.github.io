@@ -1,8 +1,9 @@
 ## Learning Objectives 
 
-* Introduce DGE and experimental design
-* Set up an RNA-seq project in RStudio 
-* Understand RNA-seq and DGE analysis workflow
+* Introduce DGE 
+* Introduce experimental design for the module
+* Data pre-processing and generating the count matrix 
+
 * Understand the use of negative binomial distribution to model RNA-seq count data
 
 # Differential gene expression (DGE) analysis overview 
@@ -118,11 +119,4 @@ A1CF	63	2	4	12
 A2M	101667	4078	4458	2522
 A2M-AS1	709	24	10	14
 ```
-
-
-
-
-
-
-
-
+This count matrix in the raw material for our DGE analysis. Proceed to the next submodule.
