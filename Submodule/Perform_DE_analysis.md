@@ -86,8 +86,70 @@ All RNA-seq datasets have variation between conditions that is not a result the 
 Even though the mean expression levels between sample groups may appear to be quite different, it is possible that the difference is not actually significant when technical variation is not controlled for. This is illustrated for 'GeneA' expression between 'untreated' and 'treated' groups in the figure below. The mean expression level of geneA for the 'treated' group is twice as large as for the 'untreated' group, but the variation between replicates indicates that this may not be a significant difference. While it's possible that your treatment is driving the variation in transcription, this situation or more often the result of some technical variable, such as a batch effect. **We need to take into account the variation in the data (and where it might be coming from) when determining whether genes are differentially expressed.**
 
 <img src="../img/de_norm_counts_var.png" width="400">
+The goal of differential expression analysis is to determine, for each gene, whether the differences in expression (counts) **between groups** is significant given the amount of variation observed **within groups** (replicates). To test for significance, we need an appropriate statistical model that accurately performs normalization (to account for differences in sequencing depth, etc.) and variance modeling (to account for few numbers of replicates and large dynamic expression range).
 
 
+### RNA-seq count distribution
 
+To determine the appropriate statistical model, we need information about the distribution of counts. To get an idea about how RNA-seq counts are distributed, let's plot the counts for a single sample, 'Mov10_oe_1':
+
+```r
+ggplot(data) +
+  geom_histogram(aes(x = Human), stat = "bin", bins = 200) +
+  xlab("Raw expression counts") +
+  ylab("Number of genes")
+```
+<img src="../img/deseqcountsdistribution.png" width="400">
+If we zoom in close to zero, we can see a large number of genes with counts of zero:
+
+```r
+ggplot(data) +
+   geom_histogram(aes(x = Human), stat = "bin", bins = 200) + 
+   xlim(-5, 500)  +
+   xlab("Raw expression counts") +
+   ylab("Number of genes")
+```
+<img src="../img/deseqcountsdistribution2.png" width="400">
+These images illustrate some common features of RNA-seq count data, including a **low number of counts associated with a large proportion of genes**, and a long right tail due to the **lack of any upper limit for expression**. Unlike microarray data, which has a dynamic range maximum limited due to when the probes max out, there is no limit of maximum expression for RNA-seq data. Due to the differences in these technologies, the statistical models used to fit the data are different between the two methods. 
+
+> **NOTE:** The log intensities of the microarray data approximate a normal distribution. However, due to the different properties of the of RNA-seq count data, such as integer counts instead of continuous measurements and non-normally distributed data, the normal distribution does not accurately model RNA-seq counts [[1](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3541212/)].
+
+### Modeling count data
+
+Count data is often modeled using the **binomial distribution**, which can give you the **probability of getting a number of heads upon tossing a coin a number of times**. However, not all count data can be fit with the binomial distribution. The binomial is based on discrete events and used in situations when you have a certain number of cases.
+
+When **the number of cases is very large (i.e. people who buy lottery tickets), but the probability of an event is very small (probability of winning)**, the **Poisson distribution** is used to model these types of count data. The Poisson is similar to the binomial, but is based on continuous events.
+
+**With RNA-Seq data, a very large number of RNAs are represented and the probability of pulling out a particular transcript is very small**. Thus, it would be an appropriate situation to use the Poisson distribution. However, a unique property of this distribution is that the mean == variance. Realistically, with RNA-Seq data there is always some biological variation present across the replicates (within a sample class). Genes with larger average expression levels will tend to have larger observed variances across replicates. 
+
+If the proportions of mRNA stayed exactly constant between the biological replicates for each sample class, we could expect Poisson distribution (where mean == variance). [A nice description of this concept is presented by Rafael Irizarry in the EdX class](https://youtu.be/HK7WKsL3c2w). But this doesn't happen in practice, and so the Poisson distribution is only  considered appropriate for a single biological sample. 
+
+The model that fits best, given this type of variability between replicates, is the Negative Binomial (NB) model. Essentially, **the NB model is a good approximation for data where the mean < variance**, as is the case with RNA-Seq count data.
+
+>**NOTE:** 
+>
+> - **Biological replicates** represent multiple samples (i.e. RNA from different mice) representing the same sample class
+> - **Technical replicates** represent the same sample (i.e. RNA from the same mouse) but with technical steps replicated
+> - Usually biological variance is much greater than technical variance, so we do not need to account for technical variance to identify biological differences in expression
+> - **Don't spend money on technical replicates - biological replicates are much more useful**
+
+#### How do I know if my data should be modeled using the Poisson distribution or Negative Binomial distribution?
+
+If it's count data, it should fit the negative binomial, as discussed previously. However, it can be helpful to plot the *mean versus the variance* of your data. *Remember for the Poisson model, mean = variance, but for NB, mean < variance.*
+
+Run the following code to plot the *mean versus variance* for the 'Mov10 overexpression' replicates:
+
+```r
+mean_counts <- apply(data[, 3:5], 1, mean)
+variance_counts <- apply(data[, 3:5], 1, var)
+df <- data.frame(mean_counts, variance_counts)
+
+ggplot(df) +
+        geom_point(aes(x=mean_counts, y=variance_counts)) + 
+        geom_line(aes(x=mean_counts, y=mean_counts, color="red")) +
+        scale_y_log10() +
+        scale_x_log10()
+```
+<img src="../img/variancegreaterthanmean.png" width="400">
 
 
