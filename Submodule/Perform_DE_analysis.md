@@ -29,6 +29,65 @@ Finally, we need to grab the files that we will be working with for the analysis
 * Save the [full counts matrix](https://github.com/molecanth/molecanth.github.io/blob/master/module_data/primate_skeletalmuscle.txt) file in the `data` directory.
 * Save the [full metadata table](https://github.com/molecanth/molecanth.github.io/blob/master/module_data/primate_meta.txt) file in the `meta` directory.
 
+## Loading libraries
+
+For this analysis we will be using several R packages, some which have been installed from CRAN and others from Bioconductor. To use these packages (and the functions contained within them), we need to **load the libraries.** Add the following to your script and don't forget to comment liberally!
+
+```r
+## Setup
+### Bioconductor and CRAN libraries used
+library(ggplot2)
+library(RColorBrewer)
+library(DESeq2)
+library(pheatmap)
+library(DEGreport)
+```
+
+## Loading data
+
+To load the data into our current environment, we will be using the `read.table` function. We need to provide the path to each file and also specify arguments to let R know that we have a header (`header = T`) and the first column is our row names (`row.names =1`). By default the function expects tab-delimited files, which is what we have.
+
+```r
+## Load in data
+data <- read.table("data/Mov10_full_counts.txt", header=T, row.names=1) 
+
+meta <- read.table("meta/Mov10_full_meta.txt", header=T, row.names=1)
+```
+
+Use `class()` to inspect our data and make sure we are working with data frames:
+
+```r
+### Check classes of the data we just brought in
+class(meta)
+class(data)
+```
+
+## Viewing data
+
+Make sure your datasets contain the expected samples / information before proceeding to perfom any type of analysis. 
+
+```r
+View(meta)
+View(data)
+```
+## DE analysis overview
+
+So what does this count data actually represent? The count data used for differential expression analysis represents the number of sequence reads that originated from a particular gene. The higher the number of counts, the more reads associated with that gene, and the assumption that there was a higher level of expression of that gene in the sample. 
+
+<img src="../img/deseq_counts_overview.png" width="600">
+
+With DE analysis, we are looking for genes that change in expression between two or more groups (defined in the metadata)with respect to both the biological and technical variation between conditions, for example:
+- treatment vs. control
+
+**Why does it not work to identify differentially expressed gene by ranking the genes by how different they are between the two groups based only on fold change values?**
+
+All RNA-seq datasets have variation between conditions that is not a result the conditions themselves. The goal of DE analysis to indentify genes that are differentially expressed between conditions while controlling for variation introduced by variables that are not of interest.
+
+Even though the mean expression levels between sample groups may appear to be quite different, it is possible that the difference is not actually significant when technical variation is not controlled for. This is illustrated for 'GeneA' expression between 'untreated' and 'treated' groups in the figure below. The mean expression level of geneA for the 'treated' group is twice as large as for the 'untreated' group, but the variation between replicates indicates that this may not be a significant difference. While it's possible that your treatment is driving the variation in transcription, this situation or more often the result of some technical variable, such as a batch effect. **We need to take into account the variation in the data (and where it might be coming from) when determining whether genes are differentially expressed.**
+
+<img src="../img/de_norm_counts_var.png" width="400">
+
+
 
 
 
