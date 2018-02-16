@@ -2,7 +2,8 @@
 
 This module is an end-to-end differential expression analysis (DGE) workflow which can be applied to a variety of biological questions using RNA-seq data. The module requires a working knowledge of R and will utilize the R integrated environment RStudio. 
 
-Go to [Submodule 1](Submodules
+Go to [Submodule 1](Submodule/DGE_Overview.md)
+
 
 ### Installation Requirements
 
