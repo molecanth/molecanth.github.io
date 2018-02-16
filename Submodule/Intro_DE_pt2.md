@@ -2,7 +2,6 @@
 
 * Set up a DE project in R 
 * Understand the use of negative binomial distribution to model RNA-seq count data
-* Perform DE Analysis
 
 ## Set up a DE analysis in R
 
