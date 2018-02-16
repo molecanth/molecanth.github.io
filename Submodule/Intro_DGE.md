@@ -4,8 +4,6 @@
 * Introduce experimental design for the module
 * Data pre-processing and generating the count matrix 
 
-* Understand the use of negative binomial distribution to model RNA-seq count data
-
 # Differential gene expression (DGE) analysis overview 
 
 The most common use of RNA-seq data is to perform differential expression analysis to identify genes that are differentially expressed between conditions. The results of a DGE analysis can offer biological insight into the effect of your condition of interest on genome-wide gene regulatory patterns. 
