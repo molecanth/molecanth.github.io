@@ -3,7 +3,11 @@
 
 @import "{{ site.theme }}";
 
-.page-header { color: #fff; text-align: center; background-image: url("../images/oregonbanner.jpg"; }
+.page-header { color: #fff; text-align: center; background-color: #159957; background-image: url("../images/oregonbanner.jpg"); }
+@media screen and (min-width: 64em) { .page-header { padding: 5rem 6rem; } }
+@media screen and (min-width: 42em) and (max-width: 64em) { .page-header { padding: 3rem 4rem; } }
+@media screen and (max-width: 42em) { .page-header { padding: 2rem 1rem; } }
+
 
 .main-content h1, .main-content h2, .main-content h3, .main-content h4, .main-content h5, .main-content h6 { margin-top: 2rem; margin-bottom: 1rem; font-weight: normal; color: #000000; }
 
