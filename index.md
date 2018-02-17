@@ -2,17 +2,17 @@
 
 This module is an end-to-end differential expression analysis (DGE) workflow which can be applied to a variety of biological questions using RNA-seq data. The module requires a working knowledge of R and will utilize the R integrated environment RStudio.
 
-### Learning Objectives
+## Learning Objectives
 
-- Process raw RNA-seq data to prpeare for DE analysis
-- QC on count data using Principal Component Analysis (PCA) and heirarchical clustering
+- Process raw RNA-seq data to prepare for DE analysis
+- Perform QC on count data using Principal Component Analysis (PCA) and heirarchical clustering
 - Perform DE analysis using DESeq2
 - Visualizing expression patterns of differentially expressed genes
 - Performing functional analysis on gene lists with R
 
-### Contents
+## Contents
 
-#### Differential Gene Expression (DGE) using RNA-seq raw counts data
+## Differential Gene Expression (DGE) using RNA-seq raw counts data
 
 | Lessons            | 
 |:------------------------|
