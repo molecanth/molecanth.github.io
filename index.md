@@ -14,8 +14,8 @@ This module is an end-to-end differential expression analysis (DGE) workflow whi
 
 | Submodules            | 
 |:------------------------|
-|[Intorduction to Differential Expression Analysis Part 1](Submodule/Intro_DE_pt1.md)
-|[Intorduction to Differential Expression Analysis Part 2](Submodule/Intro_DE_pt2.md)
+|[Introduction to Differential Expression Analysis Part 1](Submodule/Intro_DE_pt1.md)
+|[Introduction to Differential Expression Analysis Part 2](Submodule/Intro_DE_pt2.md)
 |[RNA-seq QC using principal component analysis (PCA) and heirarchical clustering](Submodule/QC_sample_clustering.md)
 |[Perform Differential Expression Analysis with DESeq2](Submodule/Perform_DE_analysis.md)
 
