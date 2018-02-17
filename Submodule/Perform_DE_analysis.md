@@ -291,5 +291,5 @@ So 4/5 differentially expressed *MYH* genes are downregulated skeletal muscle in
 These genes make potential targets for downstream functional work. 
 
 ***
-*This module was developed by Noah D. Simons as part of NSF#1540459. Portions of the materials were adapted from the [DESeq2 vignette](https://bioconductor.org/packages/3.7/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#interactions) and [Harvard Chan Bioinformatics Team](https://hbctraining.github.io/DGE_workshop/) which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited. We also utilized data from the [NHPRTR](http://www.nhprtr.org/phase2.html)*
+*This module was developed by Noah D. Simons as part of NSF#1540459. Portions of the materials were adapted from the [DESeq2 vignette](https://bioconductor.org/packages/3.7/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#interactions) and [Harvard Chan Bioinformatics Team](https://hbctraining.github.io/DGE_workshop/). These are open access materials distributed under the terms of the Creative Commons Attribution license (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited. We also utilized publically available data from the [NHPRTR](http://www.nhprtr.org/phase2.html)*
 
