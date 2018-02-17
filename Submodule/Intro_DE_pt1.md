@@ -145,4 +145,4 @@ A1CF	63	2	4	12
 A2M	101667	4078	4458	2522
 A2M-AS1	709	24	10	14
 ```
-This count matrix in the raw material for our DE analysis. Proceed to the next submodule.
+This count matrix in the raw material for our DE analysis. Proceed to [Introduction to Differential Expression Analysis Part 2](Submodule/Intro_DE_pt2.md)
