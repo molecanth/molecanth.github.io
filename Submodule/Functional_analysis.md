@@ -18,9 +18,7 @@ Generally for any differential expression analysis, it is useful to interpret th
 
 <img src="../img/pathway_analysis.png" width="500">
 
-The goal of functional analysis is provide biological insight, so it's necessary to analyze our results in the context of our experimental hypothesis: **FMRP and MOV10 associate and regulate the translation of a subset of RNAs**. Therefore, based on the authors' hypothesis, we may expect the enrichment of processes/pathways related to **translation, splicing, and the regulation of mRNAs**, which we would need to validate experimentally.
-
-***Note that all tools described below are great tools to validate experimental results and to make hypotheses. These tools suggest genes/pathways that may be involved with your condition of interest; however, you should NOT use these tools to make conclusions about the pathways involved in your experimental process. You will need to perform experimental validation of any suggested pathways.***
+The goal of functional analysis is provide biological insight, so it's necessary to analyze our results in the context of our experimental hypothesis: **Apes differ from non-apes in skeletal muscle gene expression patterns**. Given this hypothesis, what types of processes or pathways might we expect to see enrichment in?
 
 ## Over-representation analysis
 There are a plethora of functional enrichment tools that perform some type of over-representation analysis by querying databases containing information about gene function and interactions. **Querying these databases for gene function requires the use of a _consistent vocabulary_ to describe gene function.** One of the most widely-used vocabularies is the **Gene Ontology (GO)**. This vocabulary was established by the Gene Ontology project, and the words in the vocabulary are referred to as GO terms. 
