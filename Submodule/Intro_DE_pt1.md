@@ -10,12 +10,7 @@ The most common use of RNA-seq data is to perform differential expression analys
 
 Below is detailed workflow of the major steps involved in DGE analaysis. All steps will performed using a combination of the command line in a Linux/Unix environment and RStudio. The DGE analysis itself and subsequent downstream functional analysis will be performed in RStudio.
 
-IMG.displayed {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-<img class="displayed" src="../img/RNAseqWorkflow.png" width="300">
-}
+<img src="../img/RNAseqWorkflow.png" width="300">
 
 In the following submodules, we will go through an **end-to-end gene-level RNA-seq differential expression workflow** using various R packages. We will start with the count matrix, perform exploratory data analysis for quality assessment and to explore the relationship between samples, perform differential expression analysis, and visually explore the results prior to performing downstream functional analysis.
 
