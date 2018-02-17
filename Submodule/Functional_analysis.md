@@ -14,7 +14,7 @@ The output of RNA-seq differential expression analysis is a list of significant 
 - identify genes' involvement in novel pathways or networks by grouping genes together based on similar trends
 - use global changes in gene expression by visualizing all genes being significantly up- or down-regulated in the context of external interaction data
 
-Generally for any differential expression analysis, it is useful to interpret the resulting gene lists using freely available web- and R-based tools.  While tools for functional analysis span a wide variety of techniques, they can loosely be categorized into three main types: over-representation analysis, functional class scoring, and pathway topology [[1](../../resources/pathway_tools.pdf)]. 
+Generally for any differential expression analysis, it is useful to interpret the resulting gene lists using freely available web- and R-based tools.  While tools for functional analysis span a wide variety of techniques, they can loosely be categorized into three main types: over-representation analysis, functional class scoring, and pathway topology.
 
 <img src="../img/pathway_analysis.png" width="500">
 
@@ -53,7 +53,8 @@ The GO ontologies were developed to describe and query biological knowledge with
 
 Some genes with less information may only be associated with general 'parent' terms or no terms at all, while other genes with a lot of information be associated with many terms.
 
-![Nature Reviews Cancer 7, 23-34 (January 2007)](../img/go_heirarchy.jpg
+<img src="../img/go_heirarchy.jpg" width="400">
+
 
 ## clusterProfiler
 
