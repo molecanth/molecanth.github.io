@@ -12,9 +12,7 @@ This module is an end-to-end differential expression analysis (DGE) workflow whi
 
 ## Contents
 
-## Differential Gene Expression (DGE) using RNA-seq raw counts data
-
-| Lessons            | 
+| Submodules            | 
 |:------------------------|
 |[Intorduction to Differential Expression Analysis Part 1](Submodule/Intro_DE_pt1.md)
 |[Intorduction to Differential Expression Analysis Part 2](Submodule/Intro_DE_pt2.md)
