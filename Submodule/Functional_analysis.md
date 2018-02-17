@@ -127,7 +127,6 @@ cluster_summary <- data.frame(ego)
 write.csv(cluster_summary, "results/clusterProfiler_Mov10oe.csv")
 ```
 
-![cluster_summary](../img/cluster_summary.png)
 
 ### Visualizing clusterProfiler results
 clusterProfiler has a variety of options for viewing the over-represented GO terms. We will explore the dotplot, enrichment plot, and the category netplot.
@@ -143,7 +142,7 @@ dotplot(ego, showCategory=50)
 - `Orientation:` to `Landscape`
 - `PDF size` to `8 x 14` to give a figure of appropriate size for the text labels
 
-<img src="../img/mov10oe_dotplot.png" width="600">
+<img src="../img/Rplot03.pdf" width="300">
 
 The next plot is the **enrichment GO plot**, which shows the relationship between the top 50 most significantly enriched GO terms, by grouping similar terms together. The color represents the p-values relative to the other displayed terms (brighter red is more significant) and the size of the terms represents the number of genes that are significant from our list.
 
