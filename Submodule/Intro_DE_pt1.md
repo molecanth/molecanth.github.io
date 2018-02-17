@@ -12,7 +12,6 @@ Below is detailed workflow of the major steps involved in DGE analaysis. All ste
 
 <p>
 <img src="../img/RNAseqworkflow.png" width="400">
-<p>
   
 In the following submodules, we will go through an **end-to-end gene-level RNA-seq differential expression workflow** using various R packages. We will start with the count matrix, perform exploratory data analysis for quality assessment and to explore the relationship between samples, perform differential expression analysis, and visually explore the results prior to performing downstream functional analysis.
 
