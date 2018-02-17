@@ -11,7 +11,7 @@ Normalization of reads is a necessary step for all visualization procedures, inc
 
 <img src="../img/deseq_workflow_normalization.png" width="200">
 
-The counts of mapped reads for each gene is proportional to the expression of RNA in addition to many other factors. Normalization is the process of scaling raw count values to account for the 'other' factors. Normalization allows the expression levels to be more comparable between and/or within samples.
+The counts of mapped reads for each gene is proportional to the expression of RNA in addition to other factors. Normalization is the process of scaling raw count values to account for the 'other' factors. Normalization allows the expression levels to be more comparable between and/or within samples.
 
 The main factors often considered during normalization are:
  
@@ -22,6 +22,7 @@ The main factors often considered during normalization are:
  - **Gene length:** Accounting for gene length is necessary for comparing expression between different genes within the same sample. The number of reads mapped to a longer gene can appear to have equal count/expression as a shorter gene that is more highly expressed. 
  
     <img src="../img/length_of_gene.png" width="400">
+    
 While normalization is essential for differential expression analyses, it is also necessary for exploratory data analysis, visualization of data, and whenever you are exploring or comparing counts between or within samples.
  
 ### Common normalization methods
@@ -153,7 +154,7 @@ If your data did not match, you could use the `match()` function to rearrange th
 
 Bioconductor software packages often define and use a custom class within R for storing data (input data, intermediate data and also results). These custom data structures are similar to `lists` in that they can contain multiple different data types/structures within them. But, unlike lists they have pre-specified `data slots`, which hold specific types/classes of data. The data stored in these pre-specified slots can be accessed by using specific package-defined functions.
 
-Let's start by creating the `DESeqDataSet` object and then we can talk a bit more about what is stored inside it. To create the object we will need the **count matrix** and the **metadata** table as input. We will also need to specify a **design formula**. The design formula specifies the column(s) in the metadata table and how they should be used in the analysis. For our dataset we have three columns we are interested in `~Ape`, `~Catarrhine`, and `~Haplorhini`. Each column has two factor levels, which tells DESeq2 that for each gene we want to evaluate gene expression change with respect to those different levels.We'll specify a model for each of our three tests, starting with `~Ape`. 
+Let's start by creating the `DESeqDataSet` object and then we can talk a bit more about what is stored inside it. To create the object we will need the **count matrix** and the **metadata** table as input. We will also need to specify a **design formula**. The design formula specifies the column(s) in the metadata table and how they should be used in the analysis. For our dataset we have three columns we are interested in `~Ape`, `~Catarrhine`, and `~Haplorhini`. Each column has two factor levels `Y` or `N`, which tells DESeq2 that for each gene we want to evaluate gene expression change with respect to those different levels. We'll specify a model for each of our three tests, starting with `~Ape`. 
 
 ```r
 ## Create DESeq2Dataset object
@@ -196,7 +197,7 @@ We can save this normalized data matrix to file for later use:
 ```r
 write.table(normalized_counts, file="data/normalized_counts.txt", sep="\t", quote=F, col.names=NA)
 ```
-> **NOTE:** DESeq2 doesn't actually use normalized counts, rather it uses the raw counts and models the normalization inside the Generalized Linear Model (GLM). These normalized counts will be useful for downstream visualization of results, but cannot be used as input to DESeq2 or any other tools that peform differential expression analysis which use the negative binomial model.
+> **NOTE:** DESeq2 does not actually take normalized counts as inout, rather it uses the raw counts and models the normalization inside the Generalized Linear Model (GLM). These normalized counts will be useful for downstream visualization of results, but cannot be used as input to DESeq2 or any other tools that peform differential expression analysis which use the negative binomial model.
 
 ## Quality Control
 
@@ -220,7 +221,7 @@ Sample-level QC allows us to see how well our replicates cluster together, as we
 
 <img src="../img/sample_qc.png" width="700">
 
-### [Principal Component Analysis (PCA)](https://github.com/hbctraining/DGE_workshop/blob/master/lessons/principal_component_analysis.md)
+## Principal Component Analysis (PCA)
 
 Principal Component Analysis (PCA) is a technique used to emphasize variation and bring out strong patterns in a dataset (dimensionality reduction). Details regarding PCA are given below (based on [materials from StatQuest](https://www.youtube.com/watch?v=_UVHneBUBW0), and if you would like a more thorough description, we encourage you to explore [StatQuest's video](https://www.youtube.com/watch?v=_UVHneBUBW0). 
 
@@ -236,13 +237,13 @@ We can plot a sum of the values for each gene based on it's expression (normaliz
 
 Since genes with the greatest variation between samples will have the greatest influence on the principal components, we hope our experimental condition explains this variation (e.g. high counts in one condition and low counts in the other). With PC1 representing the most variation in the data and PC2 representing the second most variation in the data, we can visualize how similar the variation of genes is between samples. **We would expect the treatment groups to separate on PC1 and/or PC2, and the biological replicates to cluster together.** This is easiest to understand by visualizing example PCA plots.
 
-The example PCA plot below is what we hope for, with our treatment groups separating on PC1, which explains ~64% of the variation in the data. 
+The example PCA plot below is what we hope for, with LPS treatment groups separating on PC1, which explains ~64% of the variation in the data. 
 
 <img src="../img/PCA3.png" width="600">
 
 We can use other variables **present in our metadata** to explore other causes of the variation in our data. We can determine that the 22.5% of variation in the data represented by PC2 is due to effect of rank on gene expression.
 
-If you samples are processed in bacthes at any point, for example if you extract RNA from all of your treatment samples on one day and control samples a different day, or if all treatment samples are run on a separate lane from control samples, PCA is a nice way to look for batch effects. Obviously you should make every effort to avoid batch effects in processing your samples. In the below figure, we see batch 1 separate distinctly from batches 2 and 3.
+If your samples are processed in batches at any point, for example if you extract RNA from all of your treatment samples on one day and control samples a different day, or if all treatment samples are run on a separate lane from control samples, PCA is a nice way to look for batch effects. Obviously you should make every effort to avoid batch effects in processing your samples. In the below figure, we see batch 1 separate distinctly from batches 2 and 3.
 
 <img src="../img/PCA_example6.png" width="400">
 
@@ -335,7 +336,7 @@ pheatmap(rld_cor)
 
 <img src="../img/primateheatmap.png" width="600">
 
-Overall, we observe pretty high correlations across the board ( > ~0.95) suggesting no outlying sample(s). We see that the pairwise correlations values have largely recapiulated the primate phylogeny, with the exception of humans. Are humans unique from other primates in their skeletal muscle biology? Perhaps this is a reflection of the gene regulatory component of those differences, we should only expect a perfect primate phylogeny if skeletal muscle gene expression is phylogenetically constrained.
+Overall, we observe pretty high correlations across the board ( > ~0.95) suggesting no outlying sample(s). We see that the pairwise correlations have largely recapiulated the primate phylogeny, with the exception of humans. Are humans unique from other primates in their skeletal muscle biology? Perhaps this is a reflection of the gene regulatory component of those differences, we should only expect a perfect primate phylogeny if skeletal muscle gene expression is phylogenetically constrained.
 
 **Now it's time to move on to the DE analysis!**
 
