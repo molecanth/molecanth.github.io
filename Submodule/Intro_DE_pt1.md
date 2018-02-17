@@ -18,6 +18,7 @@ In the following submodules, we will go through an **end-to-end gene-level RNA-s
 
 For this module we will utilize a subset of data from the Non-Human Primate Reference Transcriptome Resource (NHPRTR), described here: [Peng et al. 2014](https://academic.oup.com/nar/article/43/D1/D737/2437575)
 We will replicate a portion of the analysis described in [Trizzino et al. 2017](http://genome.cshlp.org/content/27/10/1623.full.pdf). This study used RNA-seq data from liver samples of humans, chimpanzees, rhesus macaques, marmosets, bushbabies, and mouse lemurs to permorm a series of tests for differential expression: 
+
 1) Apes (humans + chimpanzees) vs. non-apes (rhesus macaques + marmosets + bushbabies + mouse lemurs) 
 
 2) Catarrhines (humans + chimpanzees + rhesus macaques) vs. non-Catarrhines (marmosets + bushbabies + mouse lemurs) 
@@ -29,6 +30,7 @@ We will use RNA-seq data derived from skeletal muscle of 12 primates (Human, Chi
 <img src="../img/primatetree.png" width="800">
 
 Our DE analysis will replicate the three tests from above using available species from the NHPRTR: 
+
 1) Apes (Human + Chimpanzee) vs. non-apes (Pig-tailed_macaque + Japanese_macaque + Rhesus_macaque + Cynomolgous_Mauritian + Cynomolgous_Chinese + Baboon + Sooty_mangabey + Marmoset + Squirrel_monkey + Mouse_lemur)
 
 2) Catarrhines (Human + Chimpanzee + Pig-tailed_macaque + Japanese_macaque, Rhesus_macaque + Cynomolgous_Mauritian + Cynomolgous_Chinese + Baboon + Sooty_mangabey) vs. non-Catarrhines (Marmoset + Squirrel_monkey + Mouse_lemur)
