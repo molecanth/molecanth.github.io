@@ -205,17 +205,12 @@ We now have a logical vector of values that has a length which is equal to the t
 ```r
 length(which(threshold))
 ```
-	
-To add this vector to our results table we can use the `$` notation to create the column on the left hand side of the assignment operator, and the assign the vector to it instead of using `cbind()`:
-
-```r
-res$threshold <- threshold                
-```
 
 Now we can easily subset the results table to only include those that are significant using the `subset()` function:
 ```r
-sigApe <- data.frame(subset(res, threshold=TRUE))
+sigApe <- <- subset(res, padj<0.05 & abs(res$log2FoldChange)>0.58, select=c(baseMean:padj))
 ```
+
 ## Visualizing the results
 
 When we are working with large amounts of data it can be useful to display that information graphically to gain more insight. Visualization deserves an entire course of its own, but during this module we will get you started with some basic plots commonly used when exploring differential gene expression data.
@@ -256,4 +251,45 @@ Which will produce:
 
 <img src="../img/volcano_ape.png" width="400">
 
-**Nice work**, now let's see what all means by doing some functional analyses. Proceed to the next submodule. 
+**Nice work**, you've identified differentially expressed genes in skeletal muscle between apes and non-apes. You can save you results to a file with:
+```
+write.csv(as.data.frame(res),file='ApeDE.csv')
+```
+
+The next step is to follow-up with some GO enrichment and pathway analysis, for which there are many options, and many now have very useful web-based GUI interfaces with useful tutorials. Some that I'd recommend are:
+
+* g:Profiler - http://biit.cs.ut.ee/gprofiler/index.cgi 
+* DAVID - http://david.abcc.ncifcrf.gov/tools.jsp 
+* WebGestalt - http://bioinfo.vanderbilt.edu/webgestalt/ (need to register)
+* WGCNA - http://www.genetics.ucla.edu/labs/horvath/CoexpressionNetwork
+* GSEA - http://software.broadinstitute.org/gsea/index.jsp
+
+You may also find it useful to take a look at some of your most highly differentially expressed genes on an individual basis and see if there are interesting hits. For example, in our apes vs. non-apes DE analysis we can see that 3 of the top 4 most differentially expressed genes belong to the *MYH* family. What is that family? Well, a quick google search let's us know that *MYH* genes are Myosin Heavy Chain genes associated with fast-twitch skeletal muscle. We can find out how many of these genes are present in signifanctly up and downregulated genes, again using our `subset()` function:
+
+```
+sigApeUp <- subset(sigApe, log2FoldChange>0, select=c(baseMean:padj))
+write.csv(as.data.frame(sigApeUp),file='SigApeUp.csv')
+sigApeDown <- subset(sigApe, log2FoldChange<0, select=c(baseMean:padj))
+write.csv(as.data.frame(sigApeDown),file='SigApeDown.csv')
+```
+Now we can move over to our terminal window and count the number of *MYH* genes in up and downregulated genes:
+
+```
+cd /directory/of/saved/file
+grep -c "MYH" SigApeUp.csv
+```
+**Remember*** the base level is non-ape, so these are genes upregulated in apes. And we find:
+```1```
+Then:
+```
+grep -c "MYH" SigApeDown.csv
+```
+And:
+```4```
+
+So 4/5 differentially expressed *MYH* genes are downregulated skeletal muscle in apes compared to non-apes. Pretty cool. 
+These genes make potential targets for downstream functional work. 
+
+***
+*This module was developed by Noah D. Simons as part of NSF#1540459. Portions of the materials were adapted from the [DESeq2 vignette](https://bioconductor.org/packages/3.7/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#interactions) and [Harvard Chan Bioinformatics Team](https://hbctraining.github.io/DGE_workshop/) which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited. We also utilized data from the [NHPRTR](http://www.nhprtr.org/phase2.html)*
+
