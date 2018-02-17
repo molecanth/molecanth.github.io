@@ -12,11 +12,11 @@ The final step in the differential expression analysis workflow is fitting the r
 
 The [DESeq2 paper](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-014-0550-8) was published in 2014, but the package is continually updated and available for use in R through Bioconductor. It builds on good ideas for dispersion estimation and use of Generalized Linear Models from the [DSS](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4005660/) and [edgeR](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2796818/) methods. 
 
-Differential expression analysis with DESeq2 involves multiple steps as displayed in the flowchart below in blue. Briefly, DESeq2 will model the raw counts, using normalization factors (size factors) to account for differences in library depth. Then, it will estimate the gene-wise dispersions and shrink these estimates to generate more accurate estimates of dispersion to model the counts. Finally, DESeq2 will fit the negative binomial model and perform hypothesis testing using the Wald test or Likelihood Ratio Test.
+Differential expression analysis with DESeq2 involves multiple steps as displayed in the flowchart below in blue. Briefly, DESeq2 will model the raw counts, using normalization factors (size factors) to account for differences in library depth. Then, it will estimate the gene-wise dispersions and shrink these estimates to generate more accurate estimates of dispersion to model the counts. Finally, DESeq2 will fit the negative binomial model and perform hypothesis testing using the Wald test.
 
 <img src="../img/DESeq2_workflow.png" width="500">
 
-> **NOTE:** DESeq2 is actively maintained by the developers and continuously being updated. As such, it is important that you note the version you are working with. Recently, there have been some rather **big changes implemented** that impact the output. To find out more detail about the specific **modifications made to methods described in the original 2014 paper**, take a look at [this section in the DESeq2 vignette](http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#methods-changes-since-the-2014-deseq2-paper). 
+> **NOTE:** DESeq2 is actively maintained by the developers and continuously being updated. As such, it is important that you note the version you are working with. Recently, there have been some rather **big changes implemented**. To find out more detail about the specific **modifications made to methods described in the original 2014 paper**, take a look at [this section in the DESeq2 vignette](http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#methods-changes-since-the-2014-deseq2-paper). 
 
 ## Running DESeq2
 
@@ -42,7 +42,7 @@ DESeq2 also allows for the analysis of complex designs. You can explore interact
 
 `design <- ~ sex + age + treatment + sex:treatment`
 
-Since the interaction term `sex:treatment` is last in the formula, the results output from DESeq2 will output results for this term. Alternatively, as recommended in the [DESeq2 vignette](https://www.bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#interactions), we could create a new factor variable in our metadata based on the two interaction factors as shown in the table below:
+Since the interaction term `sex:treatment` is last in the formula, the results output from DESeq2 will output results for this term. **Alternatively, as recommended in the [DESeq2 vignette](https://www.bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#interactions), we could create a new factor variable in our metadata based on the two interaction factors as shown in the table below**:
 
 <img src="../img/meta_example2.png" width="300">
 
@@ -96,12 +96,12 @@ However, generally **we are interested in the LFC estimates relative to other sa
 
 ## Primate Skeletal Muscle DE analysis
 
-We have two sample classes so DE analysis is a pairwise comparison, we can first explore the results by calling the `results` function on `dds` and putting them into a results table called `res`:
+We have two sample classes, `Y` and `N`, so DE analysis is a pairwise comparison, we can first explore the results by calling the `results` function on `dds` and putting them into a results table called `res`:
 
 ```
 res<-results(dds)
 ```
-We can then call the `summary` function to explore the results:
+We can then call the `summary` function on `res` to explore the results:
 ```
 summary(res)
 ```
@@ -169,12 +169,12 @@ DESeq2 helps reduce the number of genes tested by removing those genes unlikely 
 
 - **Bonferroni:** The adjusted p-value is calculated by: p-value * m (m = total number of tests). **This is a very conservative approach with a high probability of false negatives**, so is generally not recommended.
 - **FDR/Benjamini-Hochberg:** Benjamini and Hochberg (1995) defined the concept of FDR and created an algorithm to control the expected FDR below a specified level given a list of independent p-values. **An interpretation of the BH method for controlling the FDR is implemented in DESeq2 in which we rank the genes by p-value, then multiply each ranked p-value by m/rank**.
-- **Q-value / Storey method:** The minimum FDR that can be attained when calling that feature significant. For example, if gene X has a q-value of 0.013 it means that 1.3% of genes that show p-values at least as small as gene X are false positives
+- **Q-value / Storey method:** The minimum FDR that can be attained when calling that feature significant. For example, if gene X has a q-value of 0.013 it means that 1.3% of genes that show p-values at least as small as gene X are false positives.
 
-In DESeq2, the p-values attained by the Wald test are corrected for multiple testing using the Benjamini and Hochberg method by default. There are options to use other methods in teh `results()` function. The p-adjusted values should be used to determine significant genes. The significant genes can be output for visualization and/or functional analysis.
+In DESeq2, the p-values attained by the Wald test are corrected for multiple testing using the Benjamini and Hochberg method by default. There are options to use other methods in the `results()` function. The p-adjusted values should be used to determine significant genes (and can be referred to as FDR as well). The significant genes can be output for visualization and/or functional analysis.
 
 ## MA Plot
-Next let's visualize our results with an MA plot. The MA plot shows the mean of the normalized counts versus the log2 foldchanges for all genes tested. The genes that are significantly DE are colored to be easily identified. The DESeq2 package also offers a simple function to generate this plot:
+Next let's visualize our results with an MA plot. The MA plot shows the mean of the normalized counts versus the log2 foldchanges for all genes tested. The genes that are significantly DE are colored red to be easily identified. The DESeq2 package also offers a simple function to generate this plot:
 ```
 plotMA(res, alpha = 0.05, ylim=c(-10,10))
 ```
@@ -185,7 +185,7 @@ Which results in:
 This plot allows us to evaluate the magnitude of fold changes and how they are distributed relative to mean expression.
 
 ## Narrowing down meaningful genes
-We still have a pretty large number of DE genes that will produce a lot of false positive results in downstream analysis. For example, with a very large gene list, GO enrichment results are meaningless as an abundance of terms will enriched because there are so many genes. We really want to reduce the number of DE genes as much as possible while retaining gene with biological relevance. One way we can do this is to **add a fold change threshold**. The `summary()` function doesn't have an argument for fold change threshold, 
+We still have a pretty large number of DE genes that will produce a lot of false positive results in downstream analysis. For example, with a very large gene list, GO enrichment results are meaningless as an abundance of terms will enriched because there are so many genes. We really want to reduce the number of DE genes as much as possible while retaining genes with biological relevance. One way we can do this is to **add a fold change threshold**. The `summary()` function doesn't have an argument for fold change threshold. 
 
 Let's first create variables that contain our threshold criteria:
 
@@ -195,7 +195,7 @@ padj.cutoff <- 0.05
 lfc.cutoff <- 0.58
 ```
 
-The `lfc.cutoff` is set to 0.58; remember that we are working with log2 fold changes so this translates to an actual fold change of 1.5 which is pretty reasonable. Let's create vector that helps us identify the genes that meet our criteria:
+The `lfc.cutoff` is set to 0.58; remember that we are working with log2 fold changes so this translates to an actual fold change of 1.5 which is pretty conservative. Let's create a vector that helps us identify the genes that meet our criteria:
 
 ```r
 threshold <- res$padj < padj.cutoff & abs(res$log2FoldChange) > lfc.cutoff
