@@ -186,3 +186,5 @@ To model counts appropriately when performing a differential expression analysis
 **We will be using [DESeq2](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-014-0550-8) for the DE analysis, and the analysis steps are shown in the flowchart below in green**. DESeq2 first normalizes the count data to account for differences in library sizes and RNA composition between samples. Then, we will use the normalized counts to make some plots for QC at the gene and sample level. The final step is to use the appropriate functions from the DESeq2 package to perform the differential expression analysis. Additional details and helpful suggestions regarding DESeq2 can be found in the [DESeq2 vignette](http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html).
 
 <img src="../img/deseq_workflow_full.png" width="200">
+
+Proceed to [RNA-seq QC using principal component analysis (PCA) and heirarchical clustering](Submodule/QC_sample_clustering.md)
