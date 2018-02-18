@@ -72,7 +72,7 @@ Then, to run the actual differential expression analysis, we use a single call t
 dds <- DESeq(dds)
 ```
 
-By re-assigning the results of the function back to the same variable name (`dds`), we can fill in the `slots` of our `DESeqDataSet` object.
+By re-assigning the results of the function back to the same variable name (`dds`), we can fill in the `slots` of our `DESeqDataSet` object. *Now you can also run the other two tests by creating new DESeq objects with* `design = ~ Catarrhine` *and* `design = ~ Haplorhini`.  
 
 **Everything from normalization to linear modeling was carried out by the use of a single function!** This function will print out a message for the various steps it performs: 
 
