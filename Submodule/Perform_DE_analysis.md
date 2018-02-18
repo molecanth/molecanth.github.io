@@ -72,7 +72,8 @@ Then, to run the actual differential expression analysis, we use a single call t
 dds <- DESeq(dds)
 ```
 
-By re-assigning the results of the function back to the same variable name (`dds`), we can fill in the `slots` of our `DESeqDataSet` object. *Now you can also run the other two tests by creating new DESeq objects with* `design = ~ Catarrhine` *and* `design = ~ Haplorhini`.*Note that if you run the other analysis the results from this analysis will be overwritten. The remainder of the module will be performed on the Ape analysis. You can get around this by using different naming schemes for each of the tests, e.g.* `dds_catarrhine <- DESeqDataSetFromMatrix(countData = data, colData = meta, design = ~ Catarrhine)`, just remember to rename all of the objects according throughout the analysis.   
+By re-assigning the results of the function back to the same variable name (`dds`), we can fill in the `slots` of our `DESeqDataSet` object. 
+*The rest of the module will use our results from this test, but now you can also run the other two tests on your own by creating new DESeq objects with* `design = ~ Catarrhine` *and* `design = ~ Haplorhini`.*Note that if you run the other analysis the results from this analysis will be overwritten. You can get around this by using different naming schemes for each of the tests, e.g.* `dds_catarrhine <- DESeqDataSetFromMatrix(countData = data, colData = meta, design = ~ Catarrhine)`, just remember to rename all of the objects according throughout the analysis.   
 
 **Everything from normalization to linear modeling was carried out by the use of a single function!** This function will print out a message for the various steps it performs: 
 
