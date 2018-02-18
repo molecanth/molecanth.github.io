@@ -285,12 +285,15 @@ cd /directory/of/saved/file
 grep -c "MYH" SigApeUp.csv
 ```
 **Remember*** the base level is non-ape, so these are genes upregulated in apes. And we find:
+
 ```1```
 Then:
+
 ```
 grep -c "MYH" SigApeDown.csv
 ```
 And:
+
 ```4```
 
 So 4/5 differentially expressed *MYH* genes are downregulated skeletal muscle in apes compared to non-apes. Pretty cool. 
