@@ -16,7 +16,7 @@ In the following submodules, we will go through an **end-to-end gene-level RNA-s
 
 ## Experimental Design
 
-For this module we will utilize a subset of data from the Non-Human Primate Reference Transcriptome Resource (NHPRTR), described here: [Peng et al. 2014](https://academic.oup.com/nar/article/43/D1/D737/2437575)
+For this module we will utilize a subset of data from the Non-Human Primate Reference Transcriptome Resource (NHPRTR), described here: [Peng et al. 2014](https://academic.oup.com/nar/article/43/D1/D737/2437575).
 We will replicate a portion of the analysis described in [Trizzino et al. 2017](http://genome.cshlp.org/content/27/10/1623.full.pdf). This study used RNA-seq data from liver samples of humans, chimpanzees, rhesus macaques, marmosets, bushbabies, and mouse lemurs to permorm a series of tests for differential expression: 
 
 1) Apes (humans + chimpanzees) vs. non-apes (rhesus macaques + marmosets + bushbabies + mouse lemurs) 
