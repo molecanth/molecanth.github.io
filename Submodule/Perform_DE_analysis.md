@@ -121,7 +121,11 @@ low counts [2]   : 2760, 14%
 ```
 In addition to the number of genes up- and down-regulated at the default threshold, **the function also reports the number of genes that were tested (genes with non-zero total read count), and the number of genes not included in multiple test correction due to a low mean count** (which in our case is < 7 and was determined automatically by DESeq2 based on overall counts).
 
-The default FDR threshold is set using the option `alpha` within `summary()`; 0.1 is quite liberal so let's try changing that to `0.05` -- *how many genes are we left with*?
+The default FDR threshold is set using the option `alpha` within `summary()`. `0.1` is quite liberal so let's try changing that to `0.05` with: 
+```
+summary(res, alpha=0.05
+```
+*how many genes are we left with*?
 ```
 out of 20424 with nonzero total read count
 adjusted p-value < 0.05
@@ -210,7 +214,7 @@ length(which(threshold))
 
 Now we can easily subset the results table to only include those that are significant using the `subset()` function:
 ```r
-sigApe <- <- subset(res, padj<0.05 & abs(res$log2FoldChange)>0.58, select=c(baseMean:padj))
+sigApe <- subset(res, padj<0.05 & abs(res$log2FoldChange)>0.58, select=c(baseMean:padj))
 ```
 
 ## Visualizing the results
