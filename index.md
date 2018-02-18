@@ -8,7 +8,6 @@ This module is an end-to-end differential expression analysis (DGE) workflow whi
 - Perform QC on count data using Principal Component Analysis (PCA) and heirarchical clustering
 - Perform DE analysis using DESeq2
 - Visualizing expression patterns of differentially expressed genes
-- Performing functional analysis on gene lists with R
 
 ## Contents
 
