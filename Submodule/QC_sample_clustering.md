@@ -338,10 +338,7 @@ pheatmap(rld_cor)
 
 Overall, we observe pretty high correlations across the board ( > ~0.95) suggesting no outlying sample(s). We see that the pairwise correlations have largely recapiulated the primate phylogeny, with the exception of humans. Are humans unique from other primates in their skeletal muscle biology? Perhaps this is a reflection of the gene regulatory component of those differences, we should only expect a perfect primate phylogeny if skeletal muscle gene expression is phylogenetically constrained.
 
-**Now it's time to move on to the DE analysis!**
-
----
-
+**Now it's time to move on to the DE analysis!** Proceed to [Perform Differential Expression Analysis with DESeq2](../Submodule/Perform_DE_analysis.md)
 
 
 
