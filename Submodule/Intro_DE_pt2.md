@@ -187,4 +187,4 @@ To model counts appropriately when performing a differential expression analysis
 
 <img src="../img/deseq_workflow_full.png" width="200">
 
-Proceed to [RNA-seq QC using principal component analysis (PCA) and heirarchical clustering](Submodule/QC_sample_clustering.md)
+Proceed to [RNA-seq QC using principal component analysis (PCA) and heirarchical clustering](../Submodule/QC_sample_clustering.md)
