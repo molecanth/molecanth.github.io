@@ -1,2 +1,5 @@
 theme: jekyll-theme-cayman
-title: "@MolecAnth"
+webrick:
+  headers:
+    My-Header: Molecular Anthropology Group
+    My-Other-Header: Genomics Training Module
