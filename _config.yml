@@ -1,6 +1,7 @@
 theme: jekyll-theme-cayman
-title: Molecular Anthropology Group
-tagline: Genomics Training Module
-baseurl:      ""
-paginate:     1
-locale:       "en"
+
+<body>
+    <section class="page-header">
+      <h1 class="project-name">Molecular Anthropology Group</h1>
+      <h2 class="project-tagline">Genomics Training Module</h2>
+    </section>
