@@ -1,5 +1,2 @@
 theme: jekyll-theme-cayman
-webrick:
-  headers:
-    My-Header: Molecular Anthropology Group
-    My-Other-Header: Genomics Training Module
+title: Molecular Anthropology Group
