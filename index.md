@@ -28,8 +28,7 @@ Install the required R packages by running the following code in RStudio:
 
 ```r
 source("http://bioconductor.org/biocLite.R") 
-biocLite(c("RColorBrewer", "pheatmap", "gProfileR", "DESeq2", "clusterProfiler", 
-           "DOSE", "org.Hs.eg.db", "pathview", "treemap", "purrr", "SPIA", "DEGreport"))
+biocLite(c("RColorBrewer", "pheatmap", "DESeq2"))
 ```
 
 Load the libraries to make sure the packages installed properly:
@@ -39,13 +38,4 @@ library(DESeq2)
 library(ggplot2)
 library(RColorBrewer)
 library(pheatmap)
-library(clusterProfiler)
-library(DEGreport)
-library(org.Hs.eg.db)
-library(DOSE)
-library(pathview)
-library(SPIA)
-library(purrr)
-library(gProfileR)
-library(treemap)
 ```
