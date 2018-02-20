@@ -89,8 +89,9 @@ a {
 .page-header {
   color: $header-heading-color;
   text-align: center;
-  background-color: $header-bg-color;
+  background-color: 999999;
   background-image: url("../images/gel.jpg");
+  opacity: 0.7;
 
   @include large {
     padding: 3rem 6rem;
