@@ -48,7 +48,7 @@ To load the data into our current environment, we will be using the `read.table`
 
 ```r
 ## Load in data
-data <- read.table("data/primate_skeletalmuscle.txt", header=T, row.names=1) 
+data <- read.table("data/primate_skeletalmuscle-2.txt", header=T, row.names=1) 
 
 meta <- read.table("meta/primate_meta.txt", header=T, row.names=1)
 ```
