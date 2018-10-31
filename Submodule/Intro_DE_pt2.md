@@ -23,7 +23,7 @@ Now save the file as `de_script.R`. When finished your working directory should 
 
 ![setup](../img/settingup.png)
 
-Finally, we need to grab the files that we will be working with for the analysis. The NHPRTR has provided a massive count matrix of every species/tissue combination, of which I have extracted a subset of data for skeletal muscle from all species, and generated an associated metadata file. Click on each of the links below, and once on the github page right-click the download button and choose "Save link as ..." option and save to your `data` directory:
+Finally, we need to grab the files that we will be working with for the analysis. The NHPRTR has provided a massive count matrix of every species/tissue combination, of which I have extracted a subset of data for skeletal muscle from all species, and generated an associated metadata file. To download the counts matrix click the first link below, and once on the github page right-click the download button and choose "Save link as ..." option and save to your `data` directory. To download the metdata table, click the second link below, click the "Raw" button and then save the page through your browser by clicking File > Save Page As... and save as primate_meta.txt in your `meta` directory
 
 * Save the [full counts matrix](https://github.com/molecanth/molecanth.github.io/blob/master/module_data/primate_skeletalmuscle-2.txt) file in the `data` directory.
 * Save the [full metadata table](https://github.com/molecanth/molecanth.github.io/blob/master/module_data/primate_meta.txt) file in the `meta` directory.
